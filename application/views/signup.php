@@ -11,9 +11,13 @@
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
 				<div class="panel panel-primary">
-					<div class="panel-heading">Login</div>
+					<div class="panel-heading">Sign Up</div>
 					<div class="panel-body">
-						<form>
+						<form id="form">
+							<div class="form-group">
+								<label for="name">Name:</label>
+								<input type="type" class="form-control" id="name" name="name">
+							</div>
 							<div class="form-group">
 								<label for="email">Email address:</label>
 								<input type="email" class="form-control" id="email" name="email">
@@ -22,8 +26,8 @@
 								<label for="pwd">Password:</label>
 								<input type="password" class="form-control" id="pwd" name="password">
 							</div>
-							<button type="button" class="btn btn-success">Login</button>
-							<a href="<?php echo base_url('signup'); ?>" class="pull-right">Sign Up</a>
+							<button type="button" class="btn btn-success">SignUp</button>
+							<a href="<?php echo base_url('login'); ?>" class="pull-right">Log In</a>
 						</form>
 					</div>
 				</div>
@@ -34,7 +38,9 @@
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$('.btn-success').click(function() {
-				if($('#email').val() === '') {
+				if ($('#name').val() === '') {
+					alert('Name is required.');
+				} else if($('#email').val() === '') {
 					alert('Email is required.');
 				} else if(IsEmail($('#email').val())== false) {
 					alert('Email is not correct.');
@@ -43,19 +49,17 @@
 				} else {
 					let data = $("form").serialize();
 					$.ajax({
-						url: "<?php base_url() ?>welcome/login",
+						url: "<?php base_url() ?>welcome/register",
 						type: "POST",
 						dataType: "json",
 						data : data,
 						success: function(res) {
 							if (res.status === 'success') {
-								alert('Login Successful.');
-								window.location.href = "<?php echo base_url('home'); ?>";
-							} else if (res.status === 'failed') {
-								alert('Please check your credentials.');
-								console.log(res);
+								alert('Registration Successful.');
+								window.location.href = "<?php echo base_url('login'); ?>";
 							} else {
 								alert(res.error);
+								console.log(res);
 							}
 						},
 						error: function(err) {
