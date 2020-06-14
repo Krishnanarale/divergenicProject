@@ -27,6 +27,22 @@ class HobbieController extends CI_Controller {
 		die(json_encode($response));
 	}
 
+	public function getAllHobbiesByUser() {
+		$result = $this->HobbieModel->getHobbies($this->input->post('id'));
+		if ($result) {
+			$response = array(
+				'status' => 'success',
+				'data' => $result->result_array()
+			);
+		} else {
+			$response = array(
+				'status' => 'failed',
+				'data' => $result
+			);
+		}
+		die(json_encode($response));
+	}
+
 	public function addHobbie() {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
@@ -104,6 +120,22 @@ class HobbieController extends CI_Controller {
 			$response = array(
 				'status' => 'success',
 				'data' => $result
+			);
+		} else {
+			$response = array(
+				'status' => 'failed',
+				'data' => $result
+			);
+		}
+		die(json_encode($response));
+	}
+
+	public function getUserOfMostHobbies() {
+		$result = $this->HobbieModel->getUserOfMostHobbies();
+		if ($result) {
+			$response = array(
+				'status' => 'success',
+				'data' => $result->result_array()
 			);
 		} else {
 			$response = array(

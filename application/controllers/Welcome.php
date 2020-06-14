@@ -18,8 +18,17 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
+	public function index() {
+		if ($this->session->has_userdata('user')) {
+			$this->load->view('common/header');
+			$this->load->view('common/navbar');
+			$this->load->view('home');
+		} else {
+			redirect(base_url()."login");		
+		}
+	}
+
+	public function loginView() {
 		$this->load->view('common/header');
 		$this->load->view('login');
 	}
@@ -71,7 +80,7 @@ class Welcome extends CI_Controller {
 		}
 		$this->load->model('UserModel');
 		$result = $this->UserModel->getUser($this->input->post())->result_array();
-		if ($result[0]['password'] === $this->input->post('password')) {
+		if ($result && $result[0]['password'] === $this->input->post('password')) {
 			$this->session->set_userdata('user', $result[0]);
 			$response = array(
 				'status' => 'success',
@@ -89,16 +98,6 @@ class Welcome extends CI_Controller {
 	public function logout() {
 		$this->session->unset_userdata('user');
 		$this->session->sess_destroy();
-		redirect(base_url()."login"); 
-	}
-
-	public function home() {
-		if ($this->session->has_userdata('user')) {
-			$this->load->view('common/header');
-			$this->load->view('common/navbar');
-			$this->load->view('home');
-		} else {
-			redirect(base_url()."login");		
-		}
+		redirect(base_url()); 
 	}
 }

@@ -27,4 +27,8 @@ class SubHobbieModel extends CI_Model {
 	public function deleteSubHobbie($data) {
 		return $this->db->delete($this->table, array('id' => $data['id']));
 	}
+
+	public function getUserOfMostSubHobbies() {
+		return $this->db->query('SELECT `userId`, COUNT(`userId`) AS `mostSubHobbies` FROM `vw_subHobbies` GROUP BY `userId` ORDER BY `mostSubHobbies` DESC LIMIT 1');
+	}
 }

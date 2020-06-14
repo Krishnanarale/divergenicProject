@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
 				<div class="panel panel-primary">
-					<div class="panel-heading">Login</div>
+					<div class="panel-heading">User Login</div>
 					<div class="panel-body">
 						<form>
 							<div class="form-group">
@@ -50,7 +50,7 @@
 						success: function(res) {
 							if (res.status === 'success') {
 								alert('Login Successful.');
-								window.location.href = "<?php echo base_url('home'); ?>";
+								window.location.href = "<?php echo base_url('hobbies'); ?>";
 							} else if (res.status === 'failed') {
 								alert('Please check your credentials.');
 								console.log(res);

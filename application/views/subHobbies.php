@@ -9,7 +9,6 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<!-- <th>Sr</th> -->
 					<th>Hobbie</th>
 					<th>Sub Hobbie</th>
 					<th>Action</th>
@@ -82,7 +81,6 @@
 			$('.table').DataTable( {
 				"ajax": "<?php echo base_url() ?>SubHobbiesController/getAllSubHobbies",
 				"columns": [
-				// { "data": "id" },
 				{ "data": "hobbieId" },
 				{ "data": "subHobbie" },
 				{ "data": function (item, index) { return "<a class='btn btn-warning' onclick='editHobbie("+item.id+")' data-toggle='modal' data-target='#exampleModal'>Edit</a><a class='btn btn-danger' onclick='deleteHobbie("+item.id+")' data-toggle='modal' data-target='#editModal'>Delete</a>"; } },
