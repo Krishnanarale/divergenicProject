@@ -153,7 +153,7 @@ CREATE TABLE `vw_subHobbies` (
 --
 DROP TABLE IF EXISTS `vw_Hobbies`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_Hobbies`  AS  select `hobbies`.`id` AS `id`,`users`.`name` AS `user`,`hobbies`.`hobbie` AS `hobbie`,`hobbies`.`created_at` AS `created_at` from (`hobbies` join `users` on(`hobbies`.`userId` = `users`.`id`)) ;
+CREATE VIEW `vw_Hobbies`  AS  select `hobbies`.`id` AS `id`,`users`.`name` AS `user`,`hobbies`.`hobbie` AS `hobbie`,`hobbies`.`created_at` AS `created_at` from (`hobbies` join `users` on(`hobbies`.`userId` = `users`.`id`)) ;
 
 -- --------------------------------------------------------
 
@@ -162,7 +162,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vw_SubHobbies`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_SubHobbies`  AS  select `subHobbies`.`id` AS `id`,`subHobbies`.`userId` AS `userId`,`hobbies`.`hobbie` AS `hobbieId`,`subHobbies`.`subHobbie` AS `subHobbie`,`subHobbies`.`created_at` AS `created_at` from (`subHobbies` join `hobbies` on(`subHobbies`.`hobbieId` = `hobbies`.`id`)) ;
+CREATE VIEW `vw_SubHobbies`  AS  select `subHobbies`.`id` AS `id`,`subHobbies`.`userId` AS `userId`,`hobbies`.`hobbie` AS `hobbieId`,`subHobbies`.`subHobbie` AS `subHobbie`,`subHobbies`.`created_at` AS `created_at` from (`subHobbies` join `hobbies` on(`subHobbies`.`hobbieId` = `hobbies`.`id`)) ;
 
 -- --------------------------------------------------------
 
@@ -171,7 +171,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vw_subHobbies`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_subHobbies`  AS  select `subHobbies`.`id` AS `id`,`users`.`name` AS `userId`,`hobbies`.`hobbie` AS `hobbieId`,`subHobbies`.`subHobbie` AS `subHobbie`,`subHobbies`.`created_at` AS `created_at` from ((`subHobbies` join `hobbies` on(`subHobbies`.`hobbieId` = `hobbies`.`id`)) join `users` on(`subHobbies`.`userId` = `users`.`id`)) ;
+CREATE VIEW `vw_subHobbies`  AS  select `subHobbies`.`id` AS `id`,`users`.`name` AS `userId`,`hobbies`.`hobbie` AS `hobbieId`,`subHobbies`.`subHobbie` AS `subHobbie`,`subHobbies`.`created_at` AS `created_at` from ((`subHobbies` join `hobbies` on(`subHobbies`.`hobbieId` = `hobbies`.`id`)) join `users` on(`subHobbies`.`userId` = `users`.`id`)) ;
 
 --
 -- Indexes for dumped tables
